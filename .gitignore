@@ -7,5 +7,6 @@
 
 # Environment Related Files
 venv/
+db.sqlite3
 
 

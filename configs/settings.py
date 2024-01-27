@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-ysi7p*gkzzordga4j$ecf%9_q&rl3_aellbz9w@nwmf)c6ms^k
 DEBUG = True
 
 LOCAL_APPS = [
-    'apps.skills.apps.SkillsConfig'
+    'apps.skills.apps.SkillsConfig',
+    'apps.courses.apps.CoursesConfig',
+    'apps.tags.apps.TagsConfig',
 ]
 ALLOWED_HOSTS = []
 
