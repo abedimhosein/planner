@@ -4,6 +4,8 @@
 # Python Related Files
 *.pyc
 */__pycache__/
+*.code-workspace
+.vscode/
 
 # Environment Related Files
 venv/

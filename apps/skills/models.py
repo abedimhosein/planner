@@ -16,6 +16,7 @@ class Board(models.Model, AtWhenFields):
 
 class Skill(models.Model, AtWhenFields):
     title = models.CharField(max_length=255)
+    order = models.PositiveIntegerField(null=True, blank=True)
 
     # ------ relations
     board = models.ForeignKey(Board, on_delete=models.PROTECT, related_name='skills')
@@ -26,6 +27,7 @@ class Skill(models.Model, AtWhenFields):
 
 class Queue(models.Model, AtWhenFields):
     title = models.CharField(max_length=255)
+    order = models.PositiveIntegerField(null=True, blank=True)
 
     # ------ relations
     board = models.ForeignKey(Board, on_delete=models.PROTECT, related_name='queues')
