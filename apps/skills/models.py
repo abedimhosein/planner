@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from utils.models import AtWhenFields
+from utils.models import BaseModel
 
 
-class Board(models.Model, AtWhenFields):
+class Board(BaseModel):
     title = models.CharField(max_length=255)
 
     # ------ relations
@@ -14,7 +14,7 @@ class Board(models.Model, AtWhenFields):
         return self.title
 
 
-class Skill(models.Model, AtWhenFields):
+class Skill(BaseModel):
     title = models.CharField(max_length=255)
     order = models.PositiveIntegerField(null=True, blank=True)
 
@@ -25,7 +25,7 @@ class Skill(models.Model, AtWhenFields):
         return self.title
 
 
-class Queue(models.Model, AtWhenFields):
+class Queue(BaseModel):
     title = models.CharField(max_length=255)
     order = models.PositiveIntegerField(null=True, blank=True)
 

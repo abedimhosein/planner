@@ -1,10 +1,10 @@
 from django.db import models
 
-from utils.models import AtWhenFields
+from utils.models import BaseModel
 from apps.skills.models import Skill, Queue
 
 
-class Course(models.Model, AtWhenFields):
+class Course(BaseModel):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     order = models.PositiveIntegerField(null=True, blank=True)
@@ -18,7 +18,7 @@ class Course(models.Model, AtWhenFields):
         return self.title
     
 
-class Part(models.Model, AtWhenFields):
+class Part(BaseModel):
     title = models.CharField(max_length=255)
     order = models.PositiveIntegerField()
 
@@ -37,7 +37,7 @@ class Part(models.Model, AtWhenFields):
         unique_together = ('order', 'course')
 
 
-class Note(models.Model, AtWhenFields):
+class Note(BaseModel):
     title = models.CharField(max_length=255, null=True, blank=True)
     context = models.TextField()
 
@@ -55,7 +55,7 @@ class Note(models.Model, AtWhenFields):
         ordering = ('-created_at', )
 
 
-class ProgressLog(models.Model, AtWhenFields):
+class ProgressLog(BaseModel):
     title = models.CharField(max_length=255, null=True, blank=True)
     context = models.TextField()
 
@@ -69,5 +69,9 @@ class ProgressLog(models.Model, AtWhenFields):
     def __str__(self) -> str:
         return (self.title or self.summary)
     
+    
+    class Meta:
+        ordering = ('-created_at', )
+
     class Meta:
         ordering = ('-created_at', )
