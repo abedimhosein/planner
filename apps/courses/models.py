@@ -16,7 +16,7 @@ class Course(BaseModel):
 
     def __str__(self) -> str:
         return self.title
-    
+
 
 class Part(BaseModel):
     title = models.CharField(max_length=255)
@@ -26,13 +26,12 @@ class Part(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.PROTECT, related_name='parts')
     parent = models.ForeignKey(
         'self', on_delete=models.CASCADE, related_name='children',
-         null=True, blank=True
-        )
-
+        null=True, blank=True
+    )
 
     def __str__(self) -> str:
         return self.title
-    
+
     class Meta:
         unique_together = ('order', 'course')
 
@@ -49,10 +48,10 @@ class Note(BaseModel):
         return f"{self.context[:15]}..."
 
     def __str__(self) -> str:
-        return (self.title or self.summary)
-    
+        return self.title or self.summary
+
     class Meta:
-        ordering = ('-created_at', )
+        ordering = ('-created_at',)
 
 
 class ProgressLog(BaseModel):
@@ -68,7 +67,6 @@ class ProgressLog(BaseModel):
 
     def __str__(self) -> str:
         return (self.title or self.summary)
-    
-    
+
     class Meta:
-        ordering = ('-created_at', )
+        ordering = ('-created_at',)
