@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     *LOCAL_APPS,
+    'admin_searchable_dropdown',
 ]
 
 MIDDLEWARE = [
