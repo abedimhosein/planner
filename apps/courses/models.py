@@ -54,19 +54,4 @@ class Note(BaseModel):
         ordering = ('-created_at',)
 
 
-class ProgressLog(BaseModel):
-    title = models.CharField(max_length=255, null=True, blank=True)
-    context = models.TextField()
 
-    # ------ relations
-    course = models.ForeignKey(Course, on_delete=models.PROTECT, related_name='progress_logs')
-
-    @property
-    def summary(self):
-        return f"{self.context[:15]}..."
-
-    def __str__(self) -> str:
-        return (self.title or self.summary)
-
-    class Meta:
-        ordering = ('-created_at',)

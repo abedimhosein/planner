@@ -1,18 +1,16 @@
-from typing import Any
+from admin_searchable_dropdown.filters import AutocompleteFilter
 from django.contrib import admin
+
 from .models import (
     Course,
     Note,
-    ProgressLog,
     Part,
 )
-from admin_searchable_dropdown.filters import AutocompleteFilter
 
 
 class SkillFilter(AutocompleteFilter):
-    title = 'Skill' # display title
-    field_name = 'skill' # name of the foreign key field
-
+    title = 'Skill'  # display title
+    field_name = 'skill'  # name of the foreign key field
 
 
 @admin.register(Course)
@@ -23,7 +21,7 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ('title', 'skill')
     list_editable = ('skill',)
     list_per_page = 10
-    search_fields = ('title', )
+    search_fields = ('title',)
     list_filter = [SkillFilter]
 
 
@@ -39,13 +37,5 @@ class PartAdmin(admin.ModelAdmin):
 class NoteAdmin(admin.ModelAdmin):
     class Meta:
         model = Note
-
-    list_display = ('summary',)
-
-
-@admin.register(ProgressLog)
-class ProgressLogAdmin(admin.ModelAdmin):
-    class Meta:
-        model = ProgressLog
 
     list_display = ('summary',)

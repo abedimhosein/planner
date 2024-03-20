@@ -13,6 +13,9 @@ class Tag(BaseModel):
     # ------ relations
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='tags')
 
+    class Meta:
+        unique_together = ('title', 'user')
+
 
 class TaggedItem(BaseModel):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='items')

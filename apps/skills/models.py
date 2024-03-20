@@ -24,6 +24,9 @@ class Skill(BaseModel):
     def __str__(self):
         return self.title
 
+    class Meta:
+        unique_together = ('title', 'board')
+
 
 class Queue(BaseModel):
     title = models.CharField(max_length=255)

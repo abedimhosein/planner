@@ -29,6 +29,11 @@ LOCAL_APPS = [
     'apps.courses.apps.CoursesConfig',
     'apps.tags.apps.TagsConfig',
 ]
+
+THIRD_PARTY_APPS = [
+    'admin_searchable_dropdown',
+]
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -40,8 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    *THIRD_PARTY_APPS,
     *LOCAL_APPS,
-    'admin_searchable_dropdown',
 ]
 
 MIDDLEWARE = [
