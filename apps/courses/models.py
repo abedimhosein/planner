@@ -1,7 +1,7 @@
 from django.db import models
 
+from apps.skills.models import Queue
 from utils.models import BaseModel
-from apps.skills.models import Skill, Queue
 
 
 class Course(BaseModel):
@@ -11,7 +11,6 @@ class Course(BaseModel):
     link = models.URLField(null=True, blank=True)
 
     # ------ relations
-    skill = models.ForeignKey(Skill, on_delete=models.PROTECT, related_name='courses')
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT, related_name='courses')
 
     def __str__(self) -> str:
@@ -21,6 +20,7 @@ class Course(BaseModel):
 class Part(BaseModel):
     title = models.CharField(max_length=255)
     order = models.PositiveIntegerField()
+    level = models.PositiveIntegerField(default=0)
 
     # ------ relations
     course = models.ForeignKey(Course, on_delete=models.PROTECT, related_name='parts')
@@ -34,39 +34,3 @@ class Part(BaseModel):
 
     class Meta:
         unique_together = ('order', 'course')
-
-
-class Note(BaseModel):
-    title = models.CharField(max_length=255, null=True, blank=True)
-    context = models.TextField()
-
-    # ------ relations
-    course = models.ForeignKey(Course, on_delete=models.PROTECT, related_name='notes')
-
-    @property
-    def summary(self) -> str:
-        return f"{self.context[:15]}..."
-
-    def __str__(self) -> str:
-        return self.title or self.summary
-
-    class Meta:
-        ordering = ('-created_at',)
-
-
-class ProgressLog(BaseModel):
-    title = models.CharField(max_length=255, null=True, blank=True)
-    context = models.TextField()
-
-    # ------ relations
-    course = models.ForeignKey(Course, on_delete=models.PROTECT, related_name='progress_logs')
-
-    @property
-    def summary(self):
-        return f"{self.context[:15]}..."
-
-    def __str__(self) -> str:
-        return (self.title or self.summary)
-
-    class Meta:
-        ordering = ('-created_at',)

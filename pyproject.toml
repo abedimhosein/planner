@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "planner"
+version = "0.1.0"
+description = "Simple planner for the skills you want to learn"
+authors = ["Amir Abedi <abedimhosein@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+# Core-Framework
+Django = "4.2.*, <5"
+
+# Utilities
+jdatetime = "^4.1.1"
+
+# Rest-API
+djangorestframework = "^3.14.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
