@@ -1,6 +1,32 @@
-Dockcerfile
+# Ignore common version control system files and directories
 .git
-venv/
-db.sqlite3
-__pycache__/
-*/__pycache__/
+.gitignore
+.gitattributes
+
+# Ignore Python cache and compiled files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore development and local files
+*.db
+*.sqlite3
+media/
+
+# Ignore Docker-related files
+Dockerfile
+docker-compose.yml
+
+# Ignore testing and documentation files
+tests/
+docs/
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+
+# Ignore system files
+__MACOSX/
+.DS_Store
+Thumbs.db

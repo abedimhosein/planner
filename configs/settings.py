@@ -23,11 +23,14 @@ SECRET_KEY = 'django-insecure-ysi7p*gkzzordga4j$ecf%9_q&rl3_aellbz9w@nwmf)c6ms^k
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = []
 
+# Application definition
 LOCAL_APPS = [
     'apps.skills.apps.SkillsConfig',
     'apps.courses.apps.CoursesConfig',
     'apps.tags.apps.TagsConfig',
+    'apps.notes.apps.NotesConfig',
 ]
 
 THIRD_PARTY_APPS = [
@@ -36,7 +39,8 @@ THIRD_PARTY_APPS = [
 
 ALLOWED_HOSTS = []
 
-# Application definition
+THIRD_PARTY_APPS = [
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',

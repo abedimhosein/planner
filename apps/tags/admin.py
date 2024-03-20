@@ -16,4 +16,3 @@ class TaggedItemAdmin(admin.ModelAdmin):
         model = TaggedItem
 
     list_display = ('tag', 'content_object')
-    readonly_fields = ('type', )
