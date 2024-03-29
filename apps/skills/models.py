@@ -19,6 +19,10 @@ class Skill(BaseModel):
     order = models.PositiveIntegerField(null=True, blank=True)
 
     # ------ relations
+    parent = models.ForeignKey(
+        'self', on_delete=models.CASCADE, related_name='children',
+        null=True, blank=True
+    )
     board = models.ForeignKey(Board, on_delete=models.PROTECT, related_name='skills')
 
     def __str__(self):

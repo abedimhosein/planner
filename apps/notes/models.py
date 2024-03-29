@@ -32,6 +32,7 @@ class Note(BaseModel):
     # ------ relations
     folder = models.ForeignKey(Folder, on_delete=models.SET_NULL, null=True, blank=True)
 
+    # ------ generic relations
     object_id = models.PositiveBigIntegerField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     content_object = GenericForeignKey()

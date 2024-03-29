@@ -3,13 +3,12 @@ from django.contrib import admin
 
 from .models import (
     Course,
-    Note,
     Part,
 )
 
 
 class SkillFilter(AutocompleteFilter):
-    title = 'Skill'  # display title
+    title = 'Skill'  # displayed title
     field_name = 'skill'  # name of the foreign key field
 
 
@@ -31,11 +30,3 @@ class PartAdmin(admin.ModelAdmin):
         model = Part
 
     list_display = ('title', 'order')
-
-
-@admin.register(Note)
-class NoteAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Note
-
-    list_display = ('summary',)

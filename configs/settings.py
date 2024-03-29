@@ -37,11 +37,6 @@ THIRD_PARTY_APPS = [
     'admin_searchable_dropdown',
 ]
 
-ALLOWED_HOSTS = []
-
-THIRD_PARTY_APPS = [
-]
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

@@ -26,7 +26,7 @@ class TaggedItem(BaseModel):
             models.Q(app_label='apps.skills', model='Skill')
     )
 
-    # ------ relations
+    # ------ generic relations
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to=limit)
     content_object = GenericForeignKey()
