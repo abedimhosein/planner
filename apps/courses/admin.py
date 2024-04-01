@@ -1,4 +1,4 @@
-from admin_searchable_dropdown.filters import AutocompleteFilter
+from admin_searchable_dropdown.filters import AutocompleteFilterFactory
 from django.contrib import admin
 
 from .models import (
@@ -7,21 +7,25 @@ from .models import (
 )
 
 
-class SkillFilter(AutocompleteFilter):
-    title = 'Skill'  # displayed title
-    field_name = 'skill'  # name of the foreign key field
-
-
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     class Meta:
         model = Course
 
-    list_display = ('title', 'skill')
-    list_editable = ('skill',)
-    list_per_page = 10
+    list_display = ('title', 'skill', 'duration')
     search_fields = ('title',)
-    list_filter = [SkillFilter]
+    list_filter = [
+        AutocompleteFilterFactory('Skill', 'skill')
+    ]
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+
+        user = request.user
+        if user.is_superuser:
+            return qs
+
+        return qs.filter(skill__board__user=user)
 
 
 @admin.register(Part)
@@ -30,3 +34,12 @@ class PartAdmin(admin.ModelAdmin):
         model = Part
 
     list_display = ('title', 'order')
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+
+        user = request.user
+        if user.is_superuser:
+            return qs
+
+        return qs.filter(course__skill__board__user=user)

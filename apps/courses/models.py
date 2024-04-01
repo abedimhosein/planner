@@ -9,6 +9,7 @@ class Course(BaseModel):
     description = models.TextField(null=True, blank=True)
     order = models.PositiveIntegerField(null=True, blank=True)
     link = models.URLField(null=True, blank=True)
+    duration = models.DurationField(null=True, blank=True)
 
     # ------ relations
     skill = models.ForeignKey(Skill, on_delete=models.PROTECT, related_name='courses')

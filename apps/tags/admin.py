@@ -13,6 +13,15 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ('title', 'user')
     list_select_related = ['user']
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+
+        user = request.user
+        if user.is_superuser:
+            return qs
+
+        return qs.filter(user=user)
+
 
 @admin.register(TaggedItem)
 class TaggedItemAdmin(admin.ModelAdmin):
